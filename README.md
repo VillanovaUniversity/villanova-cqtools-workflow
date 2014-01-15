@@ -22,10 +22,10 @@ Run `mvn clean install -Pauto-deploy` to install the bundles into your local CQ 
 Allows a workflow participant to be selected based on the payload path. This can be configured via the Configuration page in the CQ5 Web Console or a config file in the CRX.
 
 ##### Options
-###### payload.mappings (String[])
-If the payload matches one of the paths defined, then the workflow is assigned to the group specified after the colon.
-###### default.group (String)
-If the payload does not match any of the defined mappings, this group will be assigned the workflow. If this is empty, the workflow will default to the administrators group.
+* payload.mappings (String[])
+ * If the payload matches one of the paths defined, then the workflow is assigned to the group specified after the colon.
+* default.group (String)
+ * If the payload does not match any of the defined mappings, this group will be assigned the workflow. If this is empty, the workflow will default to the administrators group.
 
 ##### Example config file (_edu.villanova.cqtools.workflow.PathBasedParticipantChooser.xml_)
 Should be placed in a location such as /apps/myapp/config/
