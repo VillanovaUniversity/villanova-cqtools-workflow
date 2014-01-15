@@ -1,0 +1,21 @@
+*.vlt
+*.vltignore
+*.DS_Store
+*.tmp
+*.db
+
+### Eclipse Files
+/target
+*/target
+/.externalToolBuilders
+/.settings
+*/.settings
+/.classpath
+*/.classpath
+/.project
+*/.project
+
+### IntelliJ files
+*.iml
+.idea
+*plugin.xml

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>edu.villanova.cqtools</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>${project.groupId} - ${project.artifactId}</name>
+    <description>Parent Maven POM for the open source 'Villanova CQ Tools' project.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 
+            The following CQ connection properties are the default out-of-the-box CQ settings.
+            You should override their definition during mvn runtime if your CQ environment is different.
+        -->
+        <crx.host>localhost</crx.host>
+        <crx.port>4502</crx.port>
+        <crx.user>admin</crx.user>
+        <crx.password>admin</crx.password>
+    </properties>
+
+    <modules>
+        <module>workflow</module>
+    </modules>
+    
+    <!-- Adobe Repositories -->
+    <repositories>
+         <repository>
+             <id>adobe-public-releases</id>
+             <name>Adobe Basel Public Repository</name>
+             <url>http://repo.adobe.com/nexus/content/groups/public</url>
+             <releases>
+                 <enabled>true</enabled>
+                 <updatePolicy>never</updatePolicy>
+             </releases>
+             <snapshots>
+                 <enabled>false</enabled>
+             </snapshots>
+         </repository>
+     </repositories>
+     <pluginRepositories>
+         <pluginRepository>
+             <id>adobe-public-releases</id>
+             <name>Adobe Basel Public Repository</name>
+             <url>http://repo.adobe.com/nexus/content/groups/public</url>
+             <releases>
+                 <enabled>true</enabled>
+                 <updatePolicy>never</updatePolicy>
+             </releases>
+             <snapshots>
+                 <enabled>false</enabled>
+             </snapshots>
+         </pluginRepository>
+     </pluginRepositories>
+	
+</project>
