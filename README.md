@@ -1,5 +1,7 @@
 # Villanova CQ Tools
 
+Currently tested and read for CQ 5.5
+
 ## Installation
 
 Run `mvn clean package` to build the OSGI bundle. The jar file will be located in the /target folder of the module.
