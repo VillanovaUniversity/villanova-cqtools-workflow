@@ -1,6 +1,6 @@
 # Villanova CQ Tools
 
-Tools for working with Adobe CQ. Currently tested and read for CQ 5.5.
+This is the CQ5.6 version. This repo contains tools for working with Adobe CQ workflows.
 
 ## Installation
 

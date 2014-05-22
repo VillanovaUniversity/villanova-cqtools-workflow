@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>villanova-cqtools-workflow</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>${project.groupId} - ${project.artifactId}</name>
@@ -79,6 +79,34 @@
 					</instructions>
 				</configuration>
 			</plugin>
+			<plugin>
+	            <groupId>org.apache.sling</groupId>
+	            <artifactId>maven-sling-plugin</artifactId>
+	            <executions>
+	                <execution>
+	                    <id>install-bundle</id>
+	                    <goals>
+	                        <goal>install</goal>
+	                    </goals>
+	                    <configuration>
+	                        <slingUrl>http://${crx.host}:${crx.port}</slingUrl>
+	                        <!-- 
+	                            IMPORTANT: due to an issue with the 2.1.0 version of the maven-sling-plugin, the path specified by the slingUrlSuffix
+	                            parameter below will not be created automatically and so must already exist in your CQ instance BEFORE trying to use the
+	                            auto-deploy profile. See this link for further information:
+	                            http://mail-archives.apache.org/mod_mbox/sling-users/201204.mbox/%3CBD6ED82C-3223-41C2-BF15-C987D7AAFCE3@craigsdickson.com%3E
+	                        -->
+	                        <slingUrlSuffix>/apps/villanova/install</slingUrlSuffix>
+	                        <bundleStart>true</bundleStart>
+	                        <user>${crx.user}</user>
+	                        <password>${crx.password}</password>
+	                        <usePut>true</usePut>
+	                        <failOnError>true</failOnError>
+	                        <refreshPackages>true</refreshPackages>
+	                    </configuration>
+	                </execution>
+	            </executions>
+	        </plugin>
 		</plugins>
 	</build>
     <dependencies>
@@ -90,50 +118,32 @@
 		    <version>1.9.0</version>
 		    <scope>provided</scope>
 		</dependency>
-    	<dependency>
-            <groupId>com.day.cq.wcm</groupId>
-            <artifactId>cq-wcm-api</artifactId>
-            <version>5.5.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-			<groupId>org.apache.felix</groupId>
-			<artifactId>org.apache.felix.framework</artifactId>
-			<version>3.0.8</version>
-			<scope>provided</scope>
+		<dependency>
+		    <groupId>org.apache.felix</groupId>
+		    <artifactId>org.apache.felix.framework</artifactId>
+		    <version>4.1.0.R1404502</version>
+		    <scope>provided</scope>
 		</dependency>
 		<dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.scr</artifactId>
-            <version>1.6.1-R1236132</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.commons.osgi</artifactId>
-            <version>2.1.0</version>
-            <scope>provided</scope>
-        </dependency>
+		    <groupId>org.apache.felix</groupId>
+		    <artifactId>org.apache.felix.scr</artifactId>
+		    <version>1.6.3-R1409029</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.sling</groupId>
+		    <artifactId>org.apache.sling.commons.osgi</artifactId>
+		    <version>2.2.0</version>
+		    <scope>provided</scope>
+		</dependency>
 		
 		<!-- Project specific dependencies -->
 		<dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.api</artifactId>
-            <version>2.2.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.day.cq</groupId>
-            <artifactId>cq-commons</artifactId>
-            <version>5.5.0</version>
-            <scope>provided</scope>
-        </dependency>
-		<dependency>
-            <groupId>javax.jcr</groupId>
-            <artifactId>jcr</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
-        </dependency>
+		    <groupId>org.apache.sling</groupId>
+		    <artifactId>org.apache.sling.jcr.jcr-wrapper</artifactId>
+		    <version>2.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -141,75 +151,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.day.cq</groupId>
-            <artifactId>cq-security-api</artifactId>
-            <version>5.5.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.day.cq.workflow</groupId>
-            <artifactId>cq-workflow-api</artifactId>
-            <version>5.5.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.day.cq</groupId>
-            <artifactId>cq-mailer</artifactId>
-            <version>5.5.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.day.commons.osgi.wrapper</groupId>
-            <artifactId>com.day.commons.osgi.wrapper.commons-email</artifactId>
-            <version>1.2.0-0002</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.jackrabbit</groupId>
-            <artifactId>jackrabbit-api</artifactId>
-            <version>2.4.0</version>
-            <scope>provided</scope>
-        </dependency>
+			<groupId>com.day.cq.workflow</groupId>
+			<artifactId>cq-workflow-api</artifactId>
+			<version>5.6.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.jackrabbit</groupId>
+		    <artifactId>jackrabbit-api</artifactId>
+		    <version>2.5.3</version>
+		    <scope>provided</scope>
+		</dependency>
     </dependencies>
-    
-    <!--
-    	Use the profile 'auto-deploy' and the sling plugin to automatically deploy the bundle to the JCR tree
-    -->
-    <profiles>
-        <profile>
-            <id>auto-deploy</id>
-            <build>
-                <plugins>
-                	<plugin>
-                        <groupId>org.apache.sling</groupId>
-                        <artifactId>maven-sling-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>install-bundle</id>
-                                <goals>
-                                    <goal>install</goal>
-                                </goals>
-                                <configuration>
-                                    <slingUrl>http://${crx.host}:${crx.port}</slingUrl>
-                                    <!-- 
-                                        IMPORTANT: due to an issue with the 2.1.0 version of the maven-sling-plugin, the path specified by the slingUrlSuffix
-                                        parameter below will not be created automatically and so must already exist in your CQ instance BEFORE trying to use the
-                                        auto-deploy profile. See this link for further information:
-                                        http://mail-archives.apache.org/mod_mbox/sling-users/201204.mbox/%3CBD6ED82C-3223-41C2-BF15-C987D7AAFCE3@craigsdickson.com%3E
-                                    -->
-                                    <slingUrlSuffix>/apps/villanova/install</slingUrlSuffix>
-                                    <bundleStart>true</bundleStart>
-                                    <user>${crx.user}</user>
-                                    <password>${crx.password}</password>
-                                    <usePut>true</usePut>
-                                    <failOnError>true</failOnError>
-                                    <refreshPackages>true</refreshPackages>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
